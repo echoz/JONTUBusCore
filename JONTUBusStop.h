@@ -17,7 +17,7 @@
 	NSNumber *lon;
 	NSNumber *lat;
 	NSArray *otherBus;
-	NSArray *routes;
+	NSArray *_routes;
 }
 
 @end

@@ -10,6 +10,7 @@
 		00CB59671159F03A00928E4F /* JONTUBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB59641159F03A00928E4F /* JONTUBusRoute.m */; };
 		00CB59681159F03A00928E4F /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB59661159F03A00928E4F /* JONTUBusStop.m */; };
 		00CB596B1159F05A00928E4F /* JONTUBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB596A1159F05A00928E4F /* JONTUBus.m */; };
+		00F660B3115C9CD4005DBC45 /* JONTUBusEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */; };
 		8DD76F9A0486AA7600D96B5E /* NTUBusArrival.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* NTUBusArrival.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* NTUBusArrival.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* NTUBusArrival.1 */; };
@@ -35,6 +36,8 @@
 		00CB59661159F03A00928E4F /* JONTUBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JONTUBusStop.m; sourceTree = "<group>"; };
 		00CB59691159F05A00928E4F /* JONTUBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JONTUBus.h; sourceTree = "<group>"; };
 		00CB596A1159F05A00928E4F /* JONTUBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JONTUBus.m; sourceTree = "<group>"; };
+		00F660B1115C9CD4005DBC45 /* JONTUBusEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JONTUBusEngine.h; sourceTree = "<group>"; };
+		00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JONTUBusEngine.m; sourceTree = "<group>"; };
 		08FB7796FE84155DC02AAC07 /* NTUBusArrival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTUBusArrival.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* NTUBusArrival_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTUBusArrival_Prefix.pch; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				00CB59661159F03A00928E4F /* JONTUBusStop.m */,
 				00CB59691159F05A00928E4F /* JONTUBus.h */,
 				00CB596A1159F05A00928E4F /* JONTUBus.m */,
+				00F660B1115C9CD4005DBC45 /* JONTUBusEngine.h */,
+				00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				00CB59671159F03A00928E4F /* JONTUBusRoute.m in Sources */,
 				00CB59681159F03A00928E4F /* JONTUBusStop.m in Sources */,
 				00CB596B1159F05A00928E4F /* JONTUBus.m in Sources */,
+				00F660B3115C9CD4005DBC45 /* JONTUBusEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

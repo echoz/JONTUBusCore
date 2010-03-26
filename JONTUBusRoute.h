@@ -13,6 +13,7 @@
 	NSUInteger id;
 	NSString *name;
 	NSArray *_busstops;
+	NSArray *_buses;
 }
 
 @end
