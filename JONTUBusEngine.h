@@ -15,6 +15,11 @@
 	NSArray *_busstops;
 }
 
+-(void)updateBusPositions;
+-(JONTUBus *)getBusUsingID:(NSUInteger)id;
+-(JONTUBus *)getBusUsingPlateNumber:(NSString *)plate;
+
+/* generic methods */
 +(JONTUBusEngine *)sharedJONTUBusEngine;
 -(NSData *)sendXHRToURL:(NSString *)url PostValues:(NSDictionary *)postValues;
 

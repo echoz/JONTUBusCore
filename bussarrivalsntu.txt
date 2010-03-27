@@ -1,0 +1,89 @@
+XHR Analysis for campusbus.ntu.edu.sg
+
+getCurrentPosition:
+Retrieves current position of all shuttle buses or shuttle bus gps devices.
+
+Sample output:
+<current_position> 
+<device routename="NTU-D" id="3" name="PA598Y" x="355580.47282353" y="146925.35161276" lon="103.701903" lat="1.328934" speed="0" leftpixelicon="0" toppixelicon="-124" stat="hide" iscdistance="2959.5460644807" /> 
+<device routename="NTU-C" id="1" name="PA4913U" x="353103.7211317" y="148984.18985723" lon="103.679635" lat="1.347544" speed="28" leftpixelicon="-93" toppixelicon="-93" stat="show" iscdistance="0.42171456556312" /> 
+<device routename="NTU-C" id="4" name="PA662U" x="353277.50300627" y="149547.51023365" lon="103.681194" lat="1.35264" speed="0" leftpixelicon="0" toppixelicon="-93" stat="show" iscdistance="3.8169053121143" /> 
+<device routename="NTU-B" id="2" name="PA6443X" x="353682.48211332" y="149236.06408979" lon="103.684835" lat="1.349825" speed="22" leftpixelicon="-155" toppixelicon="-62" stat="show" iscdistance="0.35961008914818" /> 
+<device routename="NTU-D" id="6" name="PH6440" x="353574.26106086" y="148501.23014591" lon="103.683866" lat="1.343178" speed="11" leftpixelicon="-31" toppixelicon="-124" stat="show" iscdistance="0.60577988515126" /> 
+<device routename="NTU-D" id="5" name="PH2986" x="353950.78040473" y="148855.37202693" lon="103.687248" lat="1.346383" speed="34" leftpixelicon="-155" toppixelicon="-124" stat="show" iscdistance="4.2352380199485" /> 
+<device routename="NTU-D" id="8" name="PA665" x="353258.27293492" y="148145.1757072" lon="103.681028" lat="1.339956" speed="0" leftpixelicon="0" toppixelicon="-124" stat="show" iscdistance="4.5152768880128" /> 
+<device routename="NTU-D" id="9" name="PA602" x="353572.51315338" y="148354.84961673" lon="103.683851" lat="1.341854" speed="0" leftpixelicon="0" toppixelicon="-124" stat="show" iscdistance="6.6874483456669" /> 
+<device routename="NTU-D" id="7" name="PA4934" x="353384.55064088" y="149141.25425005" lon="103.682158" lat="1.348966" speed="42" leftpixelicon="-279" toppixelicon="-124" stat="show" iscdistance="11.070518781587" /> 
+</current_position>
+
+<device> node contains
+routename: Different routes avaliable
+id: ????
+name: bus license plate number?
+x: x-coor on map
+y: y-coor on map
+lon: gps longitude
+lat: gps latitude
+speed: speed in km/h of buss
+stat: to show or not to show location
+iscdistance: ??
+
+
+getCurrentBusStop
+Show all bus stops on particular route
+
+Sample output: 
+<current_bus_stop> 
+<current_route id="1" icon="stp_rd" /> 
+<bus_stop id="1" /> 
+<bus_stop id="2" /> 
+<bus_stop id="3" /> 
+<bus_stop id="4" /> 
+<bus_stop id="5" /> 
+<bus_stop id="6" /> 
+<bus_stop id="7" /> 
+<bus_stop id="8" /> 
+<bus_stop id="9" /> 
+<bus_stop id="10" /> 
+<bus_stop id="11" /> 
+<bus_stop id="12" /> 
+</current_bus_stop>
+
+
+getEta
+Get ETA of shuttle busses
+
+Sample output:
+<eta> 
+<bus_stop code="63711" other_bus="" /> 
+<route id="3" name="NTU-C" color="ffcc00" coloralt="fef5cc"> 
+<bus order="1" name="PA4913U" eta="4 mins" /> 
+<bus order="2" name="PA662U" eta="7 mins" /> 
+</route> 
+</eta>
+
+
+busstop data:
+Contained within javascript html in order to push information to ajax map
+
+Use Regex to pull this shit out. :D
+
+possible regex: 
+ntu.busStop.push\(\{\s+id:[0-9]+,\s+code:[0-9]+,\s+description:"[\w ]+",\s+roadName:"[\w ]+",\s+x:[\d.]+,\s+y:[\d.]+,\s+lon:[\d.]+,\s+lat:[\d.]+,\s+otherBus:"[\w ,]+",\s+marker:.*,\s+markerShadow:.*\s+\}\);
+
+ntu.busStop.push({
+	id:16,
+	code:27021,
+	description:"Hall 14 &amp; 15",
+	roadName:"Nanyang Crescent",
+	x:353370.984374,
+	y:149616.246994,
+	lon:103.682033782,
+	lat:1.35326220749,
+	otherBus:"199",
+	marker:marker,
+	markerShadow:markerShadow
+});
+
+HTTP POST to index.php/main/<function>
+include r = math.random() in POST data

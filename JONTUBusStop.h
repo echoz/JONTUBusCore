@@ -20,4 +20,6 @@
 	NSArray *_routes;
 }
 
+-(NSDictionary *) arrivalTimes;
+
 @end
