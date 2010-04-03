@@ -1,24 +1,18 @@
 #import <Foundation/Foundation.h>
+#import "JONTUBusEngine.h"
 
 int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-	NSString *post = [NSString stringWithFormat:@"routeid=1&r=%f", random()];
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+	NSMutableDictionary *post = [NSMutableDictionary dictionary];
 	
-	NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
-	
-	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-	
-	[request setURL:[NSURL URLWithString:@"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentBusStop"]];
-	[request setHTTPMethod:@"POST"];
-	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[request setHTTPBody:postData];
-	
-	NSData *recvData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	[post setValue:@"1" forKey:@"routeid"];
+	[post setValue:[NSString stringWithFormat:@"%f", (float)arc4random()/10000000000] forKey:@"r"];
+	NSData *recvData = [engine sendXHRToURL:@"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentBusStop" PostValues:post];
 	
 	NSLog(@"%@",[[[NSString alloc] initWithData:recvData encoding:NSASCIIStringEncoding] autorelease]);
+	
 	
 	[pool drain];
     return 0;

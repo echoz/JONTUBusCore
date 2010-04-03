@@ -3,21 +3,27 @@
 //  NTUBusArrival
 //
 //  Created by Jeremy Foo on 3/26/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 THIRDLY. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "SynthesizeSingleton.h"
+#import "JONTUBus.h"
 
 @interface JONTUBusEngine : NSObject {
-	NSArray *_buses;
-	NSArray *_routes;
-	NSArray *_busstops;
+	NSArray *buses;
+	NSArray *routes;
+	NSArray *stops;
 }
 
--(void)updateBusPositions;
--(JONTUBus *)getBusUsingID:(NSUInteger)id;
--(JONTUBus *)getBusUsingPlateNumber:(NSString *)plate;
+-(void) updateBusPositions;
+
+-(void) updateRoutes;
+-(void) updateStops;
+
+@property (readonly) NSArray *buses;
+@property (readonly) NSArray *routes;
+@property (readonly) NSArray *stops;
 
 /* generic methods */
 +(JONTUBusEngine *)sharedJONTUBusEngine;

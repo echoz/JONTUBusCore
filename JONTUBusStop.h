@@ -3,7 +3,7 @@
 //  NTUBusArrival
 //
 //  Created by Jeremy Foo on 3/24/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 THIRDLY. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -20,6 +20,7 @@
 	NSArray *_routes;
 }
 
+-(id)initWithID:(NSUInteger)stopID code:(NSString *)stopCode description:(NSString *)stopDesc roadName:(NSString *)stopRdName longtitude:(NSNumber *)stopLong latitude:(NSNumber *)stopLat otherBuses:(NSArray *)stopOtherBus;
 -(NSDictionary *) arrivalTimes;
 
 @end
