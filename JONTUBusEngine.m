@@ -63,4 +63,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	return recvData;
 }
 
+-(void)dealloc {
+	[buses release];
+	[stops release];
+	[routes release];
+	[super dealloc];
+}
+
 @end

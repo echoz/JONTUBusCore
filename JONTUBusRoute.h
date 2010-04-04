@@ -10,10 +10,14 @@
 
 
 @interface JONTUBusRoute : NSObject {
-	NSUInteger id;
+	NSUInteger routeid;
 	NSString *name;
-	NSArray *_stops;
+	NSArray *stops;
 }
--(id)initWithID:(NSUInteger)routeid name:(NSString *)routename;
+-(id)initWithID:(NSUInteger)routeid name:(NSString *)routename stops:(NSArray *)stops;
+
+@property (readonly) NSUInteger id;
+@property (readonly) NSString *name;
+@property (readonly) NSArray *stops;
 
 @end

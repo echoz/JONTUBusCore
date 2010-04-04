@@ -10,8 +10,8 @@
 #import "JONTUBusRoute.h"
 
 @interface JONTUBus : NSObject {
-	NSUInteger *id;
-	JONTUBusRoute *_route;
+	NSUInteger busid;
+	JONTUBusRoute *route;
 	NSString *busPlate;
 	NSNumber *lat;
 	NSNumber *lon;
@@ -24,5 +24,11 @@
 @property (nonatomic, retain) NSNumber *lat;
 @property (nonatomic, retain) NSNumber *lon;
 @property (nonatomic, readwrite) NSUInteger speed;
+
+@property (readonly) NSUInteger busid;
+@property (readonly) JONTUBusRoute *route;
+@property (readonly) NSString *busPlate;
+@property (readonly) BOOL hide;
+@property (readonly) NSNumber *icsdistance;
 
 @end

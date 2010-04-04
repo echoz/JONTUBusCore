@@ -11,5 +11,20 @@
 
 @implementation JONTUBusRoute
 
+@synthesize id, name, stops;
+
+-(id)initWithID:(NSUInteger)rid name:(NSString *)rname {
+	if (self = [super init]) {
+		routeid = rid;
+		name = rname;
+	}
+	return self;
+}
+
+-(void)dealloc {
+	[name release];
+	[stops release];
+	[super dealloc];
+}
 
 @end
