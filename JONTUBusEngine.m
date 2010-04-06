@@ -35,26 +35,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(NSData *) sendXHRToURL:(NSString *)url PostValues:(NSDictionary *)postValues {
+
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
+	if (postValues != nil) {
 	
-	NSMutableString *post = [NSMutableString string];
-	for (NSString *key in postValues) {
-		if ([post length] > 0) {
-			[post appendString:@"&"];
+		NSMutableString *post = [NSMutableString string];
+		for (NSString *key in postValues) {
+			if ([post length] > 0) {
+				[post appendString:@"&"];
+			}
+			[post appendFormat:@"%@=%@",key,[postValues objectForKey:key]];
 		}
-		[post appendFormat:@"%@=%@",key,[postValues objectForKey:key]];
+		
+		NSLog(@"Post String: %@", post);
+		NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+		NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+		[request setHTTPMethod:@"POST"];
+		[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+		[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+		[request setHTTPBody:postData];
+		
 	}
 	
-	NSLog(@"Post String: %@", post);
-	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-	
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	
 	[request setURL:[NSURL URLWithString:url]];
-	[request setHTTPMethod:@"POST"];
-	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[request setHTTPBody:postData];
 	
 	NSData *recvData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	

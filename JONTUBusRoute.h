@@ -14,7 +14,7 @@
 	NSString *name;
 	NSArray *stops;
 }
--(id)initWithID:(NSUInteger)routeid name:(NSString *)routename stops:(NSArray *)stops;
+-(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops;
 
 @property (readonly) NSUInteger id;
 @property (readonly) NSString *name;

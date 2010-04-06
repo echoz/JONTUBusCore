@@ -11,6 +11,7 @@
 		00CB59681159F03A00928E4F /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB59661159F03A00928E4F /* JONTUBusStop.m */; };
 		00CB596B1159F05A00928E4F /* JONTUBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB596A1159F05A00928E4F /* JONTUBus.m */; };
 		00F660B3115C9CD4005DBC45 /* JONTUBusEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */; };
+		3F3B4D96116B465B00EB908A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3B4D95116B465B00EB908A /* libicucore.dylib */; };
 		8DD76F9A0486AA7600D96B5E /* NTUBusArrival.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* NTUBusArrival.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* NTUBusArrival.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* NTUBusArrival.1 */; };
@@ -42,6 +43,7 @@
 		08FB7796FE84155DC02AAC07 /* NTUBusArrival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTUBusArrival.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* NTUBusArrival_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTUBusArrival_Prefix.pch; sourceTree = "<group>"; };
+		3F3B4D95116B465B00EB908A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		8DD76FA10486AA7600D96B5E /* NTUBusArrival */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NTUBusArrival; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* NTUBusArrival.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NTUBusArrival.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
+				3F3B4D96116B465B00EB908A /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +101,7 @@
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3F3B4D95116B465B00EB908A /* libicucore.dylib */,
 				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
 			);
 			name = "External Frameworks and Libraries";

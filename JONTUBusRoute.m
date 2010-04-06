@@ -13,10 +13,11 @@
 
 @synthesize id, name, stops;
 
--(id)initWithID:(NSUInteger)rid name:(NSString *)rname {
+-(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops{
 	if (self = [super init]) {
 		routeid = rid;
 		name = rname;
+		stops = busstops;
 	}
 	return self;
 }
