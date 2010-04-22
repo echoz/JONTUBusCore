@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004396E4118035850052A200 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 004396E3118035850052A200 /* RegexKitLite.m */; };
 		00CB59671159F03A00928E4F /* JONTUBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB59641159F03A00928E4F /* JONTUBusRoute.m */; };
 		00CB59681159F03A00928E4F /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB59661159F03A00928E4F /* JONTUBusStop.m */; };
 		00CB596B1159F05A00928E4F /* JONTUBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB596A1159F05A00928E4F /* JONTUBus.m */; };
@@ -31,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		004396E2118035850052A200 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		004396E3118035850052A200 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		00CB59631159F03A00928E4F /* JONTUBusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JONTUBusRoute.h; sourceTree = "<group>"; };
 		00CB59641159F03A00928E4F /* JONTUBusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JONTUBusRoute.m; sourceTree = "<group>"; };
 		00CB59651159F03A00928E4F /* JONTUBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JONTUBusStop.h; sourceTree = "<group>"; };
@@ -61,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		004396DE1180356D0052A200 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				004396E2118035850052A200 /* RegexKitLite.h */,
+				004396E3118035850052A200 /* RegexKitLite.m */,
+			);
+			name = RegexKitLite;
+			sourceTree = "<group>";
+		};
 		00CB595D1159F02E00928E4F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +92,7 @@
 		08FB7794FE84155DC02AAC07 /* NTUBusArrival */ = {
 			isa = PBXGroup;
 			children = (
+				004396DE1180356D0052A200 /* RegexKitLite */,
 				00CB595D1159F02E00928E4F /* Classes */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859EA2029092E104C91782 /* Documentation */,
@@ -174,6 +187,7 @@
 				00CB59681159F03A00928E4F /* JONTUBusStop.m in Sources */,
 				00CB596B1159F05A00928E4F /* JONTUBus.m in Sources */,
 				00F660B3115C9CD4005DBC45 /* JONTUBusEngine.m in Sources */,
+				004396E4118035850052A200 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +243,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

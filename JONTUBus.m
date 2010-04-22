@@ -11,7 +11,7 @@
 
 @implementation JONTUBus
 @synthesize speed, lon, lat;
-@synthesize busid, route, busPlate, hide, icsdistance;
+@synthesize busid, route, busPlate, hide, iscdistance;
 
 -(id)initWithID:(NSUInteger)bID route:(JONTUBusRoute *)busRoute plateNumber:(NSString *)plateNumber longtitude:(NSNumber *)busLong latitude:(NSNumber *)busLat speed:(NSUInteger)busSpeed hide:(BOOL)busHide icsDistance:(NSNumber *)icsdist {
 	if (self = [super init]) {
@@ -22,7 +22,7 @@
 		lat = busLat;
 		speed = busSpeed;
 		hide = busHide;
-		icsdist = icsdist;
+		iscdistance = icsdist;
 	}
 	return self;
 }

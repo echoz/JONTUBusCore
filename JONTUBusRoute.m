@@ -11,7 +11,7 @@
 
 @implementation JONTUBusRoute
 
-@synthesize id, name, stops;
+@synthesize routeid, name, stops;
 
 -(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops{
 	if (self = [super init]) {

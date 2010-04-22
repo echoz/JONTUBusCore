@@ -69,7 +69,7 @@ Contained within javascript html in order to push information to ajax map
 Use Regex to pull this shit out. :D
 
 possible regex: 
-ntu.busStop.push\(\{\s+id:[0-9]+,\s+code:[0-9]+,\s+description:"[^"\r\n]*",\s+roadName:"[\w ]*",\s+x:[\d.]+,\s+y:[\d.]+,\s+lon:[\d.]+,\s+lat:[\d.]+,\s+otherBus:"[\w ,]*",\s+marker:.*,\s+markerShadow:.*\s+\}\);
+ntu.busStop.push\(\{\s*id:(\d*),\s*code:(\d*),\s*description:"(.*)",\s*roadName:"(.*)",\s*x:([\d.]*),\s*y:([\d.]*),\s*lon:([\d.]*),\s*lat:([\d.]*),\s*otherBus:"([\w -]*)",\s*marker:.*,\s*markerShadow:.*\s*\}\);
 
 ntu.busStop.push({
 	id:16,
@@ -106,4 +106,4 @@ sample:
 });
 
 possible regex
-ntu.routes.push\(\{\s+id:[0-9]+,\s+name:"[^\r"\n]*".\s+centerMetric:.*,\s+centerLonLat:.*,\s+color:".*",\s+colorAlt:".*",\s+zone:.*,\s+busSTop:.*\s*\}\);
+ntu.routes.push\(\{\s*id:([\d]*),\s*name:"([\w -]*)",\s*centerMetric:.*,\s*centerLonLat:new GeoPoint\(([\d.]*), ([\d.]*)\),\s*color:.*,\s*colorAlt:.*,\s*zone:.*,\s*busStop:.*\s*\}\);

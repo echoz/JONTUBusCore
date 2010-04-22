@@ -29,6 +29,6 @@
 @property (readonly) JONTUBusRoute *route;
 @property (readonly) NSString *busPlate;
 @property (readonly) BOOL hide;
-@property (readonly) NSNumber *icsdistance;
+@property (readonly) NSNumber *iscdistance;
 
 @end
