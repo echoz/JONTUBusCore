@@ -107,3 +107,9 @@ sample:
 
 possible regex
 ntu.routes.push\(\{\s*id:([\d]*),\s*name:"(.*)",\s*centerMetric:.*,\s*centerLonLat:new GeoPoint\(([\d.]*), ([\d.]*)\),\s*color:.*,\s*colorAlt:.*,\s*zone:.*,\s*busStop:.*\s*\}\);
+
+
+
+//// ENGINE IDEAS
+- Have basic functions to grab and return generic JONTU objects. Try to make this static methods
+- After that, have a function to relate all of them.
