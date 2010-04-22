@@ -9,24 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "SynthesizeSingleton.h"
 #import "JONTUBus.h"
+#import "JONTUBusStop.h"
+#import "JONTUBusRoute.h"
 
 @interface JONTUBusEngine : NSObject {
-	NSArray *buses;
-	NSArray *routes;
-	NSArray *stops;
+	NSMutableArray *buses;
+	NSMutableArray *routes;
+	NSMutableArray *stops;
+	NSData *indexPageCache;
+	NSDate *lastGetIndexPage;
 }
 
 -(void) updateBusPositions;
-
+-(void) start;
 -(void) updateRoutes;
 -(void) updateStops;
 
-@property (readonly) NSArray *buses;
-@property (readonly) NSArray *routes;
-@property (readonly) NSArray *stops;
+@property (readonly) NSMutableArray *buses;
+@property (readonly) NSMutableArray *routes;
+@property (readonly) NSMutableArray *stops;
 
 /* generic methods */
 +(JONTUBusEngine *)sharedJONTUBusEngine;
 -(NSData *)sendXHRToURL:(NSString *)url PostValues:(NSDictionary *)postValues;
 
+-(NSData *) getIndexPage;
 @end
