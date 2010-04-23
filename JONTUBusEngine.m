@@ -11,7 +11,8 @@
 
 @implementation JONTUBusEngine
 
-static NSString *getRouteURL = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentBusStop";
+@synthesize dirty, holdCache;
+
 static NSString *getBusPosition = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentPosition";
 static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/getEta";
 static NSString *indexPage = @"http://campusbus.ntu.edu.sg/ntubus/";
@@ -19,13 +20,7 @@ static NSString *indexPage = @"http://campusbus.ntu.edu.sg/ntubus/";
 static NSString *regexBusStop = @"ntu.busStop.push\\(\\{\\s*id:(\\d*),\\s*code:(\\d*),\\s*description:\"(.*)\",\\s*roadName:\"(.*)\",\\s*x:([\\d.]*),\\s*y:([\\d.]*),\\s*lon:([\\d.]*),\\s*lat:([\\d.]*),\\s*otherBus:\"(.*)\",\\s*marker:.*,\\s*markerShadow:.*\\s*\\}\\);";
 static NSString *regexRoute = @"ntu.routes.push\\(\\{\\s*id:([\\d]*),\\s*name:\"(.*)\",\\s*centerMetric:.*,\\s*centerLonLat:new GeoPoint\\(([\\d.]*), ([\\d.]*)\\),\\s*color:.*,\\s*colorAlt:.*,\\s*zone:.*,\\s*busStop:.*\\s*\\}\\);";
 
-#define HOLD_CACHE_TIME 120
-
 SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
-
--(void)updateBusPositions {
-	
-}
 
 -(void)start {
 	stops = [[NSMutableArray array] retain];
@@ -33,13 +28,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	buses = [[NSMutableArray array] retain];
 }
 
--(NSArray *)buses {
-	
+-(JONTUBusStop *)stopForId:(NSUInteger)stopid {
+	for (JONTUBusStop *stop in [self stops]) {
+		if ([stop busstopid] == stopid) {
+			return stop;
+		}
+	}
+	return nil;
 }
 
 -(NSArray *)stops {
-	if ([[NSDate date] timeIntervalSinceDate:lastGetIndexPage] > HOLD_CACHE_TIME) {
-		
+	return [self stopsWithRefresh:NO];
+}
+
+-(NSArray *)stopsWithRefresh:(BOOL)refresh {
+	if (refresh) {
+		dirty = YES;
 		NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
 		NSArray *busstops = [matchString arrayOfCaptureComponentsMatchedByRegex:regexBusStop];
 		JONTUBusStop *stop;
@@ -62,9 +66,33 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	return stops;
 }
 
--(NSArray *)routes {
+-(JONTUBusRoute *)routeForId:(NSUInteger)routeid {
+	for (JONTUBusRoute *route in [self routes]) {
+		if ([route routeid] == routeid) {
+			return route;
+		}
+	}
+	return nil;
+}
+
+-(JONTUBusRoute *)routeForName:(NSString *)routename {
+	for (JONTUBusRoute *route in [self routes]) {
+		if ([[route name] isEqualToString:routename]) {
+			return route;
+		}
+	}
+	return nil;
 	
-	if ([[NSDate date] timeIntervalSinceDate:lastGetIndexPage] > HOLD_CACHE_TIME) {
+}
+
+-(NSArray *)routes {
+	return [self routesWithRefresh:NO];
+}
+
+-(NSArray *)routesWithRefresh:(BOOL)refresh {
+	
+	if (refresh) {
+		dirty = YES;		
 		NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
 		NSArray *busroutes = [matchString arrayOfCaptureComponentsMatchedByRegex:regexRoute];
 		JONTUBusRoute *route;
@@ -84,18 +112,68 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	return routes;
 }
 
+-(NSArray *)buses {
+	return [self busesWithRefresh:NO];
+}
+
+-(NSArray *)busesWithRefresh:(BOOL)refresh {
+	[buses removeAllObjects];
+	
+	NSXMLParser *parser = [[NSXMLParser alloc] initWithData:[self sendXHRToURL:getBusPosition PostValues:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%f", (float)arc4random()/10000000000] forKey:@"r"]]];
+						   
+	[parser setDelegate:self];
+	[parser setShouldProcessNamespaces:NO];
+	[parser setShouldReportNamespacePrefixes:NO];
+	[parser setShouldResolveExternalEntities:NO];
+	
+	[parser parse];
+	[parser release];
+	
+	return buses;
+}
+
+-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+	JONTUBus *bus;
+	
+	if ([elementName isEqualToString:@"device"]) {
+		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+		[f setNumberStyle:NSNumberFormatterNoStyle];
+
+		
+		bus = [[JONTUBus alloc] initWithID:[[attributeDict objectForKey:@"id"] intValue]
+									 route:[self routeForName:[attributeDict objectForKey:@"routename"]] 
+							   plateNumber:[attributeDict objectForKey:@"name"] 
+								longtitude:[f numberFromString:[attributeDict objectForKey:@"lon"]]
+								  latitude:[f numberFromString:[attributeDict objectForKey:@"lat"]]
+									 speed:[[attributeDict objectForKey:@"speed"] intValue]
+									  hide:([attributeDict objectForKey:@"stat"] == @"hide")?YES:NO 
+							   iscDistance:[f numberFromString:[attributeDict objectForKey:@"iscdistance"]]];
+		[buses addObject:bus];
+		
+		[f release];
+		[bus release];
+	}
+}
 
 -(NSData *) getIndexPage {
-	if (indexPageCache == nil) {
-		indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
-		lastGetIndexPage = [NSDate date];		
-	}
-	
-	if ([[NSDate date] timeIntervalSinceDate:lastGetIndexPage] > HOLD_CACHE_TIME) {
-		[indexPageCache release];
-		indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
-		[lastGetIndexPage release];
-		lastGetIndexPage = [NSDate date];
+	if (holdCache < 0) {
+		if (indexPageCache == nil) {
+			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
+			lastGetIndexPage = [NSDate date];
+		} else {
+			return indexPageCache;
+		}
+	} else {
+		if (indexPageCache == nil) {
+			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
+			lastGetIndexPage = [NSDate date];
+		}		
+		if ([[NSDate date] timeIntervalSinceDate:lastGetIndexPage] > holdCache) {
+			[indexPageCache release];
+			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
+			[lastGetIndexPage release];
+			lastGetIndexPage = [NSDate date];
+		}		
 	}
 	return indexPageCache;
 }

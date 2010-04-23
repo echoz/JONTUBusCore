@@ -61,7 +61,7 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 	JONTUBusStop *stop;
 
 	if ([elementName isEqualToString:@"bus_stop"]) {
-		stop = [engine stopOfId:[[attributeDict valueForKey:@"id"] intValue]];
+		stop = [engine stopForId:[[attributeDict valueForKey:@"id"] intValue]];
 		[stops addObject:stop];
 	}
 }
