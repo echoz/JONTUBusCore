@@ -22,6 +22,7 @@
 	// praser setuff
 	NSString *currentRouteid;
 	NSString *currentRouteName;
+	NSMutableArray *arrivals;
 }
 
 -(id)initWithID:(NSUInteger)stopID code:(NSString *)stopCode description:(NSString *)stopDesc roadName:(NSString *)stopRdName longtitude:(NSNumber *)stopLong latitude:(NSNumber *)stopLat otherBuses:(NSArray *)stopOtherBus;
