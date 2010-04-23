@@ -20,7 +20,7 @@
 	NSNumber *iscdistance;
 }
 
--(id)initWithID:(NSUInteger)busID route:(JONTUBusRoute *)busRoute plateNumber:(NSString *)busPlate longtitude:(NSNumber *)busLong latitude:(NSNumber *)busLat speed:(NSUInteger)busSpeed hide:(BOOL)busHide icsDistance:(NSNumber *)icsdist;
+-(id)initWithID:(NSUInteger)busID route:(JONTUBusRoute *)busRoute plateNumber:(NSString *)busPlate longtitude:(NSNumber *)busLong latitude:(NSNumber *)busLat speed:(NSUInteger)busSpeed hide:(BOOL)busHide iscDistance:(NSNumber *)iscdist;
 @property (nonatomic, retain) NSNumber *lat;
 @property (nonatomic, retain) NSNumber *lon;
 @property (nonatomic, readwrite) NSUInteger speed;

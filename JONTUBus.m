@@ -13,16 +13,16 @@
 @synthesize speed, lon, lat;
 @synthesize busid, route, busPlate, hide, iscdistance;
 
--(id)initWithID:(NSUInteger)bID route:(JONTUBusRoute *)busRoute plateNumber:(NSString *)plateNumber longtitude:(NSNumber *)busLong latitude:(NSNumber *)busLat speed:(NSUInteger)busSpeed hide:(BOOL)busHide icsDistance:(NSNumber *)icsdist {
+-(id)initWithID:(NSUInteger)bID route:(JONTUBusRoute *)busRoute plateNumber:(NSString *)plateNumber longtitude:(NSNumber *)busLong latitude:(NSNumber *)busLat speed:(NSUInteger)busSpeed hide:(BOOL)busHide iscDistance:(NSNumber *)iscdist {
 	if (self = [super init]) {
 		busid = bID;
-		route = [busRoute copy];
+		route = [busRoute retain];
 		busPlate = [plateNumber copy];
 		lon = [busLong copy];
 		lat = [busLat copy];
 		speed = busSpeed;
 		hide = busHide;
-		iscdistance = [icsdist copy];
+		iscdistance = [iscdist copy];
 	}
 	return self;
 }
