@@ -70,12 +70,13 @@
 				004396E2118035850052A200 /* RegexKitLite.h */,
 				004396E3118035850052A200 /* RegexKitLite.m */,
 			);
-			name = RegexKitLite;
+			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
-		00CB595D1159F02E00928E4F /* Classes */ = {
+		00CB595D1159F02E00928E4F /* JONTUBusCore */ = {
 			isa = PBXGroup;
 			children = (
+				004396DE1180356D0052A200 /* RegexKitLite */,
 				00F660CB115CA6F3005DBC45 /* SynthesizeSingleton.h */,
 				00CB59631159F03A00928E4F /* JONTUBusRoute.h */,
 				00CB59641159F03A00928E4F /* JONTUBusRoute.m */,
@@ -86,14 +87,13 @@
 				00F660B1115C9CD4005DBC45 /* JONTUBusEngine.h */,
 				00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */,
 			);
-			name = Classes;
+			path = JONTUBusCore;
 			sourceTree = "<group>";
 		};
 		08FB7794FE84155DC02AAC07 /* NTUBusArrival */ = {
 			isa = PBXGroup;
 			children = (
-				004396DE1180356D0052A200 /* RegexKitLite */,
-				00CB595D1159F02E00928E4F /* Classes */,
+				00CB595D1159F02E00928E4F /* JONTUBusCore */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,

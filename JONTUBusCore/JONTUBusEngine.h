@@ -41,7 +41,6 @@
 /* generic methods */
 +(JONTUBusEngine *)sharedJONTUBusEngine;
 -(NSData *)sendXHRToURL:(NSString *)url PostValues:(NSDictionary *)postValues;
-
 -(NSData *)getIndexPage;
 
 @end
