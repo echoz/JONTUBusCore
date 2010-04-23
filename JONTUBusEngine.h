@@ -22,16 +22,13 @@
 
 -(void) updateBusPositions;
 -(void) start;
--(void) updateRoutes;
--(void) updateStops;
-
-@property (readonly) NSMutableArray *buses;
-@property (readonly) NSMutableArray *routes;
-@property (readonly) NSMutableArray *stops;
+-(NSArray *)routes;
+-(NSArray *)stops;
+-(NSArray *)buses;
 
 /* generic methods */
 +(JONTUBusEngine *)sharedJONTUBusEngine;
 -(NSData *)sendXHRToURL:(NSString *)url PostValues:(NSDictionary *)postValues;
 
--(NSData *) getIndexPage;
+-(NSData *)getIndexPage;
 @end

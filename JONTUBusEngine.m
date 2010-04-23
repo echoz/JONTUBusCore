@@ -11,8 +11,6 @@
 
 @implementation JONTUBusEngine
 
-@synthesize buses, routes, stops;
-
 static NSString *getRouteURL = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentBusStop";
 static NSString *getBusPosition = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentPosition";
 static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/getEta";
@@ -32,48 +30,58 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 -(void)start {
 	stops = [[NSMutableArray array] retain];
 	routes = [[NSMutableArray array] retain];
-	[self updateStops];
-	[self updateRoutes];
+	buses = [[NSMutableArray array] retain];
 }
 
--(void)updateStops {
-	NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
-	NSArray *busstops = [matchString arrayOfCaptureComponentsMatchedByRegex:regexBusStop];
-	JONTUBusStop *stop;
-	
-	[stops removeAllObjects];
-	[matchString release];
-		
-	for (int i=0;i<[busstops count];i++) {
-		
-		stop = [[JONTUBusStop alloc] initWithID:[[[busstops objectAtIndex:i] objectAtIndex:1] intValue] code:[busstops objectAtIndex:2] 
-									description:[[busstops objectAtIndex:i] objectAtIndex:3] 
-									   roadName:[[busstops objectAtIndex:i] objectAtIndex:4]
-									 longtitude:[[busstops objectAtIndex:i] objectAtIndex:7]
-									   latitude:[[busstops objectAtIndex:i] objectAtIndex:8]
-									 otherBuses:[[[busstops objectAtIndex:i] objectAtIndex:9] componentsSeparatedByString:@","]];
-		[stops addObject:stop];
-		[stop release];
-	}
+-(NSArray *)buses {
 	
 }
 
--(void)updateRoutes {
-	NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
-	NSArray *busroutes = [matchString arrayOfCaptureComponentsMatchedByRegex:regexRoute];
-	JONTUBusRoute *route;
+-(NSArray *)stops {
+	if ([[NSDate date] timeIntervalSinceDate:lastGetIndexPage] > HOLD_CACHE_TIME) {
 		
-	[routes removeAllObjects];
-	[matchString release];	
-	
-	for (int i=0;i<[busroutes count];i++) {
-		route = [[JONTUBusRoute alloc] initWithID:[[[busroutes objectAtIndex:i] objectAtIndex:1] intValue] 
-											 name:[[busroutes objectAtIndex:i] objectAtIndex:2] stops:nil];
-		[routes addObject:route];
-		[route release];
+		NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
+		NSArray *busstops = [matchString arrayOfCaptureComponentsMatchedByRegex:regexBusStop];
+		JONTUBusStop *stop;
 		
+		[stops removeAllObjects];
+		[matchString release];
+			
+		for (int i=0;i<[busstops count];i++) {
+			
+			stop = [[JONTUBusStop alloc] initWithID:[[[busstops objectAtIndex:i] objectAtIndex:1] intValue] code:[busstops objectAtIndex:2] 
+										description:[[busstops objectAtIndex:i] objectAtIndex:3] 
+										   roadName:[[busstops objectAtIndex:i] objectAtIndex:4]
+										 longtitude:[[busstops objectAtIndex:i] objectAtIndex:7]
+										   latitude:[[busstops objectAtIndex:i] objectAtIndex:8]
+										 otherBuses:[[[busstops objectAtIndex:i] objectAtIndex:9] componentsSeparatedByString:@","]];
+			[stops addObject:stop];
+			[stop release];
+		}
 	}
+	return stops;
+}
 
+-(NSArray *)routes {
+	
+	if ([[NSDate date] timeIntervalSinceDate:lastGetIndexPage] > HOLD_CACHE_TIME) {
+		NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
+		NSArray *busroutes = [matchString arrayOfCaptureComponentsMatchedByRegex:regexRoute];
+		JONTUBusRoute *route;
+		
+		[routes removeAllObjects];
+		[matchString release];	
+		
+		for (int i=0;i<[busroutes count];i++) {
+			route = [[JONTUBusRoute alloc] initWithID:[[[busroutes objectAtIndex:i] objectAtIndex:1] intValue] 
+												 name:[[busroutes objectAtIndex:i] objectAtIndex:2] stops:nil];
+			[routes addObject:route];
+			[route release];
+			
+		}		
+	}
+	
+	return routes;
 }
 
 
