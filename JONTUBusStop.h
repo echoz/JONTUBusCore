@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface JONTUBusStop : NSObject {
+@interface JONTUBusStop : NSObject <NSXMLParserDelegate> {
 	NSUInteger busstopid;
 	NSString *code;
 	NSString *desc;
@@ -18,10 +18,14 @@
 	NSNumber *lat;
 	NSArray *otherBus;
 	NSArray *routes;
+	
+	// praser setuff
+	NSString *currentRouteid;
+	NSString *currentRouteName;
 }
 
 -(id)initWithID:(NSUInteger)stopID code:(NSString *)stopCode description:(NSString *)stopDesc roadName:(NSString *)stopRdName longtitude:(NSNumber *)stopLong latitude:(NSNumber *)stopLat otherBuses:(NSArray *)stopOtherBus;
--(NSDictionary *) arrivalTimes;
+-(NSArray *) arrivals;
 
 @property (nonatomic, retain) NSArray *routes;
 

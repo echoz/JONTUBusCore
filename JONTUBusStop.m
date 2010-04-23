@@ -17,17 +17,18 @@
 -(id)initWithID:(NSUInteger)stopID code:(NSString *)stopCode description:(NSString *)stopDesc roadName:(NSString *)stopRdName longtitude:(NSNumber *)stopLong latitude:(NSNumber *)stopLat otherBuses:(NSArray *)stopOtherBus {
 	if (self = [super init]) {
 		busstopid = stopID;
-		code = [stopCode retain];
-		desc = [stopDesc retain];
-		roadName = [stopRdName retain];
-		lon = [stopLong retain];
-		lat = [stopLat retain];
-		otherBus = [stopOtherBus retain];
+		code = [stopCode copy];
+		desc = [stopDesc copy];
+		roadName = [stopRdName copy];
+		lon = [stopLong copy];
+		lat = [stopLat copy];
+		otherBus = [stopOtherBus copy];
 	}
 	return self;
 }
 
--(NSDictionary *) arrivalTimes {
+-(NSArray *) arrivals {
+	// array of all buses arriving. buses are dictionaries stipulating order, plate number, eta, routeid, routename.
 	return nil;
 }
 
