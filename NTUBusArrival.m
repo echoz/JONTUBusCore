@@ -7,12 +7,8 @@ int main (int argc, const char * argv[]) {
 	
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 
+	[engine setHoldCache:-1];
 	[engine start];
-	
-	NSLog(@"%i", [[engine stops] count]);
-	NSLog(@"%@", [engine stops]);
-	NSLog(@"%i", [[engine routes] count]);
-	NSLog(@"%@", [engine routes]);
 	
 	[pool drain];
     return 0;

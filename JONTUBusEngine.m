@@ -26,6 +26,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	stops = [[NSMutableArray array] retain];
 	routes = [[NSMutableArray array] retain];
 	buses = [[NSMutableArray array] retain];
+	
+	// start baseline initialisation.
+	[self stopsWithRefresh:YES]; // has to be first
+	[self routesWithRefresh:YES]; // has to be second
+	[self busesWithRefresh:YES]; // has to be last
 }
 
 -(JONTUBusStop *)stopForId:(NSUInteger)stopid {
@@ -53,7 +58,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 			
 		for (int i=0;i<[busstops count];i++) {
 			
-			stop = [[JONTUBusStop alloc] initWithID:[[[busstops objectAtIndex:i] objectAtIndex:1] intValue] code:[busstops objectAtIndex:2] 
+			stop = [[JONTUBusStop alloc] initWithID:[[[busstops objectAtIndex:i] objectAtIndex:1] intValue] 
+											   code:[busstops objectAtIndex:2] 
 										description:[[busstops objectAtIndex:i] objectAtIndex:3] 
 										   roadName:[[busstops objectAtIndex:i] objectAtIndex:4]
 										 longtitude:[[busstops objectAtIndex:i] objectAtIndex:7]
@@ -138,7 +144,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	if ([elementName isEqualToString:@"device"]) {
 		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterNoStyle];
-
 		
 		bus = [[JONTUBus alloc] initWithID:[[attributeDict objectForKey:@"id"] intValue]
 									 route:[self routeForName:[attributeDict objectForKey:@"routename"]] 
@@ -212,6 +217,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(void)dealloc {
+	[lastGetIndexPage release];
 	[buses release];
 	[stops release];
 	[routes release];
