@@ -9,15 +9,19 @@
 #import <Foundation/Foundation.h>
 
 
-@interface JONTUBusRoute : NSObject {
+@interface JONTUBusRoute : NSObject <NSXMLParserDelegate> {
 	NSUInteger routeid;
 	NSString *name;
-	NSArray *stops;
+	NSMutableArray *stops;
+	NSDate *lastGetStops;
+	
 }
 -(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops;
 
+-(NSArray *)stopsWithRefresh:(BOOL)refresh;
+-(NSArray *)stops;
+
 @property (readonly) NSUInteger routeid;
 @property (readonly) NSString *name;
-@property (readonly) NSArray *stops;
 
 @end
