@@ -17,12 +17,12 @@
 -(id)initWithID:(NSUInteger)stopID code:(NSString *)stopCode description:(NSString *)stopDesc roadName:(NSString *)stopRdName longtitude:(NSNumber *)stopLong latitude:(NSNumber *)stopLat otherBuses:(NSArray *)stopOtherBus {
 	if (self = [super init]) {
 		busstopid = stopID;
-		code = stopCode;
-		desc = stopDesc;
-		roadName = stopRdName;
-		lon = stopLong;
-		lat = stopLat;
-		otherBus = stopOtherBus;
+		code = [stopCode retain];
+		desc = [stopDesc retain];
+		roadName = [stopRdName retain];
+		lon = [stopLong retain];
+		lat = [stopLat retain];
+		otherBus = [stopOtherBus retain];
 	}
 	return self;
 }

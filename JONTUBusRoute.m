@@ -16,8 +16,8 @@
 -(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops{
 	if (self = [super init]) {
 		routeid = rid;
-		name = rname;
-		stops = busstops;
+		name = [rname retain];
+		stops = [busstops retain];
 	}
 	return self;
 }

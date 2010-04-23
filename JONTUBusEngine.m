@@ -30,8 +30,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(void)start {
-	stops = [NSMutableArray array];
-	routes = [NSMutableArray array];
+	stops = [[NSMutableArray array] retain];
+	routes = [[NSMutableArray array] retain];
 	[self updateStops];
 	[self updateRoutes];
 }
