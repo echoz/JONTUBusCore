@@ -10,6 +10,8 @@ int main (int argc, const char * argv[]) {
 	[engine setHoldCache:-1];
 	[engine start];
 	
+	NSLog(@"%@",[[[engine stops] objectAtIndex:0] arrivals]);
+	
 	[pool drain];
     return 0;
 }

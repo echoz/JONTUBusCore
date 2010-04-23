@@ -58,7 +58,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		for (int i=0;i<[busstops count];i++) {
 			
 			stop = [[JONTUBusStop alloc] initWithID:[[[busstops objectAtIndex:i] objectAtIndex:1] intValue] 
-											   code:[busstops objectAtIndex:2] 
+											   code:[[busstops objectAtIndex:i] objectAtIndex:2]
 										description:[[busstops objectAtIndex:i] objectAtIndex:3] 
 										   roadName:[[busstops objectAtIndex:i] objectAtIndex:4]
 										 longtitude:[[busstops objectAtIndex:i] objectAtIndex:7]

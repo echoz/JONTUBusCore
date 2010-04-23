@@ -57,6 +57,7 @@ static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/get
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+	
 	if ([elementName isEqualToString:@"route"]) {
 		currentRouteid = [attributeDict objectForKey:@"id"];
 		currentRouteName = [attributeDict objectForKey:@"name"];
@@ -64,11 +65,17 @@ static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/get
 	
 	if ([elementName isEqualToString:@"bus"]) {
 		NSMutableDictionary *bus = [NSMutableDictionary dictionary];
-		[bus setValue:[attributeDict objectForKey:@"order"] forKey:@"order"];
-		[bus setValue:[attributeDict objectForKey:@"name"] forKey:@"plate"];
-		[bus setValue:[attributeDict objectForKey:@"eta"] forKey:@"eta"];
-		[bus setValue:[attributeDict objectForKey:@"routeid"] forKey:currentRouteid];
-		[bus setValue:[attributeDict objectForKey:@"routename"] forKey:currentRouteName];
+
+		if ([attributeDict objectForKey:@"err"]) {
+			[bus setValue:[attributeDict objectForKey:@"err"] forKey:@"err"];
+		} else {
+			[bus setValue:[attributeDict objectForKey:@"order"] forKey:@"order"];
+			[bus setValue:[attributeDict objectForKey:@"name"] forKey:@"plate"];
+			[bus setValue:[attributeDict objectForKey:@"eta"] forKey:@"eta"];			
+		}
+
+		[bus setValue:currentRouteid forKey:@"routeid"];
+		[bus setValue:currentRouteName forKey:@"routename"];
 		[arrivals addObject:bus];
 	}
 }
