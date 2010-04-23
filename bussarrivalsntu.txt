@@ -57,6 +57,10 @@ Sample output:
 getEta
 Get ETA of shuttle busses
 
+Sample input:
+busstopcode:27261
+r:0.30427705124020576
+
 Sample output:
 <eta> 
 <bus_stop code="63711" other_bus="" /> 
