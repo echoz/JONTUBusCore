@@ -32,6 +32,10 @@ iscdistance: ??
 getCurrentBusStop
 Show all bus stops on particular route
 
+sample input
+routeid:1
+r:0.4312409060075879
+
 Sample output: 
 <current_bus_stop> 
 <current_route id="1" icon="stp_rd" /> 
