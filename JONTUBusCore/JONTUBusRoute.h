@@ -14,7 +14,7 @@
 	NSString *name;
 	NSMutableArray *stops;
 	NSDate *lastGetStops;
-	
+	BOOL dirty;
 }
 -(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops;
 
@@ -23,5 +23,5 @@
 
 @property (readonly) NSUInteger routeid;
 @property (readonly) NSString *name;
-
+@property (readwrite) BOOL dirty;
 @end

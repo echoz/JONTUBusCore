@@ -42,12 +42,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(NSArray *)stops {
+	if (dirty) {
+		[self start];
+		dirty = NO;
+	}
 	return [self stopsWithRefresh:NO];
 }
 
 -(NSArray *)stopsWithRefresh:(BOOL)refresh {
 	if (refresh) {
-		dirty = YES;
 		NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
 		NSArray *busstops = [matchString arrayOfCaptureComponentsMatchedByRegex:regexBusStop];
 		JONTUBusStop *stop;
@@ -91,13 +94,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(NSArray *)routes {
+	if (dirty) {
+		[self start];
+		dirty = NO;		
+	}
+	
 	return [self routesWithRefresh:NO];
 }
 
 -(NSArray *)routesWithRefresh:(BOOL)refresh {
 	
-	if (refresh) {
-		dirty = YES;		
+	if (refresh) {	
 		NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
 		NSArray *busroutes = [matchString arrayOfCaptureComponentsMatchedByRegex:regexRoute];
 		JONTUBusRoute *route;
@@ -108,6 +115,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		for (int i=0;i<[busroutes count];i++) {
 			route = [[JONTUBusRoute alloc] initWithID:[[[busroutes objectAtIndex:i] objectAtIndex:1] intValue] 
 												 name:[[busroutes objectAtIndex:i] objectAtIndex:2] stops:nil];
+			route.dirty = YES;
 			[routes addObject:route];
 			[route release];
 			
@@ -118,21 +126,29 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(NSArray *)buses {
+	if (dirty) {
+		[self start];
+		dirty = NO;		
+	}
+	
 	return [self busesWithRefresh:NO];
 }
 
 -(NSArray *)busesWithRefresh:(BOOL)refresh {
-	[buses removeAllObjects];
-	
-	NSXMLParser *parser = [[NSXMLParser alloc] initWithData:[self sendXHRToURL:getBusPosition PostValues:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%f", (float)arc4random()/10000000000] forKey:@"r"]]];
-						   
-	[parser setDelegate:self];
-	[parser setShouldProcessNamespaces:NO];
-	[parser setShouldReportNamespacePrefixes:NO];
-	[parser setShouldResolveExternalEntities:NO];
-	
-	[parser parse];
-	[parser release];
+	if (refresh) {
+		[buses removeAllObjects];
+		
+		NSXMLParser *parser = [[NSXMLParser alloc] initWithData:[self sendXHRToURL:getBusPosition PostValues:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%f", (float)arc4random()/10000000000] forKey:@"r"]]];
+		
+		[parser setDelegate:self];
+		[parser setShouldProcessNamespaces:NO];
+		[parser setShouldReportNamespacePrefixes:NO];
+		[parser setShouldResolveExternalEntities:NO];
+		
+		[parser parse];
+		[parser release];
+		
+	}
 	
 	return buses;
 }
@@ -177,6 +193,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
 			[lastGetIndexPage release];
 			lastGetIndexPage = [NSDate date];
+			dirty = YES;
 		}		
 	}
 	return indexPageCache;

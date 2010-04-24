@@ -12,7 +12,7 @@
 
 @implementation JONTUBusRoute
 
-@synthesize routeid, name;
+@synthesize routeid, name, dirty;
 
 static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentBusStop";
 
@@ -26,7 +26,11 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 }
 
 -(NSArray *)stops {
-	return [self stopsWithRefresh:NO];
+	if (dirty) {
+		return [self stopsWithRefresh:YES];
+	} else {
+		return [self stopsWithRefresh:NO];		
+	}
 }
 
 -(NSArray *)stopsWithRefresh:(BOOL)refresh {
