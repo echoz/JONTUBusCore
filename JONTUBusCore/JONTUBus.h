@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JONTUBusRoute.h"
 
-@interface JONTUBus : NSObject {
+@interface JONTUBus : NSObject <NSCoding> {
 	NSUInteger busid;
 	JONTUBusRoute *route;
 	NSString *busPlate;

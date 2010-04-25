@@ -25,6 +25,23 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 	return self;
 }
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+	[super init];
+	
+	routeid = [aDecoder decodeIntegerForKey:@"routeid"];
+	name = [[aDecoder decodeObjectForKey:@"name"] retain];
+	stops = [[aDecoder decodeObjectForKey:@"stops"] retain];
+	
+	return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+	[aCoder encodeInteger:routeid forKey:@"routeid"];
+	[aCoder encodeObject:name forKey:@"name"];
+	[aCoder encodeObject:stops forKey:@"stops"];
+}
+
+
 -(NSArray *)stops {
 	if (dirty) {
 		return [self stopsWithRefresh:YES];
@@ -56,6 +73,7 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 		// fuck care error handling for now
 		
 		[parser release];
+		dirty = NO;
 	} 
 	return stops;
 }

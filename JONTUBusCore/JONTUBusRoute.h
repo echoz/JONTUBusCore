@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface JONTUBusRoute : NSObject <NSXMLParserDelegate> {
+@interface JONTUBusRoute : NSObject <NSXMLParserDelegate, NSCoding> {
 	NSUInteger routeid;
 	NSString *name;
 	NSMutableArray *stops;

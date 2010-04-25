@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface JONTUBusStop : NSObject <NSXMLParserDelegate> {
+@interface JONTUBusStop : NSObject <NSXMLParserDelegate, NSCoding> {
 	NSUInteger busstopid;
 	NSString *code;
 	NSString *desc;

@@ -30,6 +30,33 @@ static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/get
 	return self;
 }
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+	[super init];
+	
+	busstopid = [aDecoder decodeIntegerForKey:@"stopID"];
+	code = [[aDecoder decodeObjectForKey:@"code"] retain];
+	desc = [[aDecoder decodeObjectForKey:@"desc"] retain];
+	roadName = [[aDecoder decodeObjectForKey:@"roadName"] retain];
+	lon = [[aDecoder decodeObjectForKey:@"lon"] retain];
+	lat = [[aDecoder decodeObjectForKey:@"lat"] retain];
+	otherBus = [[aDecoder decodeObjectForKey:@"otherBus"] retain];
+	
+	arrivals = nil;
+	
+	return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+	[aCoder encodeInteger:busstopid forKey:@"stopID"];
+	[aCoder encodeObject:code forKey:@"code"];
+	[aCoder encodeObject:desc forKey:@"desc"];
+	[aCoder encodeObject:roadName forKey:@"roadName"];
+	[aCoder encodeObject:lon forKey:@"lon"];
+	[aCoder encodeObject:lat forKey:@"lat"];
+	[aCoder encodeObject:otherBus forKey:@"otherBus"];
+}
+
+
 -(NSArray *) arrivals {
 	// array of all buses arriving. buses are dictionaries stipulating order, plate number, eta, routeid, routename.
 	currentRouteid = nil;
