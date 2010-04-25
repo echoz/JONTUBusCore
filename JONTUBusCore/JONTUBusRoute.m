@@ -26,12 +26,12 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
-	[super init];
-	
-	routeid = [aDecoder decodeIntegerForKey:@"routeid"];
-	name = [[aDecoder decodeObjectForKey:@"name"] retain];
-	stops = [[aDecoder decodeObjectForKey:@"stops"] retain];
-	
+	if (self = [super init]) {
+		routeid = [aDecoder decodeIntegerForKey:@"routeid"];
+		name = [[aDecoder decodeObjectForKey:@"name"] retain];
+		stops = [[aDecoder decodeObjectForKey:@"stops"] retain];
+		
+	}
 	return self;
 }
 

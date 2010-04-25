@@ -42,11 +42,11 @@
 		00CB596A1159F05A00928E4F /* JONTUBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JONTUBus.m; sourceTree = "<group>"; };
 		00F660B1115C9CD4005DBC45 /* JONTUBusEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JONTUBusEngine.h; sourceTree = "<group>"; };
 		00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JONTUBusEngine.m; sourceTree = "<group>"; };
-		00F660CB115CA6F3005DBC45 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		08FB7796FE84155DC02AAC07 /* NTUBusArrival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTUBusArrival.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* NTUBusArrival_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTUBusArrival_Prefix.pch; sourceTree = "<group>"; };
 		3F3B4D95116B465B00EB908A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3F8C19BE11845AE50079FBBB /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* NTUBusArrival */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NTUBusArrival; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* NTUBusArrival.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NTUBusArrival.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				004396DE1180356D0052A200 /* RegexKitLite */,
-				00F660CB115CA6F3005DBC45 /* SynthesizeSingleton.h */,
 				00CB59631159F03A00928E4F /* JONTUBusRoute.h */,
 				00CB59641159F03A00928E4F /* JONTUBusRoute.m */,
 				00CB59651159F03A00928E4F /* JONTUBusStop.h */,
@@ -86,6 +85,7 @@
 				00CB596A1159F05A00928E4F /* JONTUBus.m */,
 				00F660B1115C9CD4005DBC45 /* JONTUBusEngine.h */,
 				00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */,
+				3F8C19BE11845AE50079FBBB /* SynthesizeSingleton.h */,
 			);
 			path = JONTUBusCore;
 			sourceTree = "<group>";

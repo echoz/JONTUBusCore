@@ -12,7 +12,7 @@
 #import "JONTUBusStop.h"
 #import "JONTUBusRoute.h"
 
-@interface JONTUBusEngine : NSObject <NSXMLParserDelegate> {
+@interface JONTUBusEngine : NSObject <NSXMLParserDelegate,NSCoding> {
 	NSMutableArray *buses;
 	NSMutableArray *routes;
 	NSMutableArray *stops;
@@ -24,6 +24,8 @@
 
 @property (readonly) BOOL dirty;
 @property (readwrite) int holdCache;
+
+SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(JONTUBusEngine);
 
 -(void) start;
 -(NSArray *)routes;
@@ -40,6 +42,8 @@
 
 /* generic methods */
 +(JONTUBusEngine *)sharedJONTUBusEngine;
++(void)loadState:(NSString *)archiveFilePath;
++(void)saveState:(NSString *)archiveFilePath;
 -(NSData *)sendXHRToURL:(NSString *)url PostValues:(NSDictionary *)postValues;
 -(NSData *)getIndexPage;
 

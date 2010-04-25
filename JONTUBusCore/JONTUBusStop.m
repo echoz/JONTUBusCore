@@ -31,19 +31,18 @@ static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/get
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
-	[super init];
-	
-	busstopid = [aDecoder decodeIntegerForKey:@"stopID"];
-	code = [[aDecoder decodeObjectForKey:@"code"] retain];
-	desc = [[aDecoder decodeObjectForKey:@"desc"] retain];
-	roadName = [[aDecoder decodeObjectForKey:@"roadName"] retain];
-	lon = [[aDecoder decodeObjectForKey:@"lon"] retain];
-	lat = [[aDecoder decodeObjectForKey:@"lat"] retain];
-	otherBus = [[aDecoder decodeObjectForKey:@"otherBus"] retain];
-	
-	arrivals = nil;
-	
+	if (self = [super init]) {
+		busstopid = [aDecoder decodeIntegerForKey:@"stopID"];
+		code = [[aDecoder decodeObjectForKey:@"code"] retain];
+		desc = [[aDecoder decodeObjectForKey:@"desc"] retain];
+		roadName = [[aDecoder decodeObjectForKey:@"roadName"] retain];
+		lon = [[aDecoder decodeObjectForKey:@"lon"] retain];
+		lat = [[aDecoder decodeObjectForKey:@"lat"] retain];
+		otherBus = [[aDecoder decodeObjectForKey:@"otherBus"] retain];
+		
+	}
 	return self;
+	
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {

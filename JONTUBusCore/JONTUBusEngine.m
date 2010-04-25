@@ -21,6 +21,61 @@ static NSString *regexRoute = @"ntu.routes.push\\(\\{\\s*id:([\\d]*),\\s*name:\"
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
++(void)saveState:(NSString *)archiveFilePath {
+	@synchronized([JONTUBusEngine class]) {
+		JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+		
+		[NSKeyedArchiver archiveRootObject:engine toFile:archiveFilePath];
+	}
+}
+
++(void)loadState:(NSString *)archiveFilePath {
+	@synchronized([JONTUBusEngine class]) {
+		if (!sharedJONTUBusEngine) {
+			[JONTUBusEngine sharedJONTUBusEngine];
+		}
+		
+		if ([[NSFileManager defaultManager] fileExistsAtPath:archiveFilePath]) {
+			[NSKeyedUnarchiver unarchiveObjectWithFile:archiveFilePath];
+		}
+	}
+}
+
+-(id)init {
+	if (self = [super init]) {
+		holdCache = 120;
+		stops = nil;
+		routes = nil;
+		buses = nil;
+	}
+	return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+	if (self = [super init]) {
+		stops = [[aDecoder decodeObjectForKey:@"stops"] retain];
+		routes = [[aDecoder decodeObjectForKey:@"routes"] retain];
+		buses = [[aDecoder decodeObjectForKey:@"buses"] retain];
+		indexPageCache = [[aDecoder decodeObjectForKey:@"indexPageCache"] retain];
+		lastGetIndexPage = [[aDecoder decodeObjectForKey:@"lastGetIndexPage"] retain];
+		dirty = [aDecoder decodeBoolForKey:@"dirty"];
+		holdCache = [aDecoder decodeIntForKey:@"holdCache"];
+
+	}
+	return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+	[aCoder encodeObject:stops forKey:@"stops"];
+	[aCoder encodeObject:routes forKey:@"routes"];
+	[aCoder encodeObject:buses forKey:@"buses"];
+	[aCoder encodeObject:indexPageCache forKey:@"indexPageCache"];
+	[aCoder encodeObject:lastGetIndexPage forKey:@"lastGetIndexPage"];
+	[aCoder encodeBool:dirty forKey:@"dirty"];
+	[aCoder encodeInt:holdCache forKey:@"holdCache"];
+	
+}
+
 -(void)start {
 	stops = [[NSMutableArray array] retain];
 	routes = [[NSMutableArray array] retain];
