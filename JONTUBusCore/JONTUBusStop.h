@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#if TARGET_OS_IPHONE
+#import "NSXMLParserDelegateFix.h"
+#endif
 
 @interface JONTUBusStop : NSObject <NSXMLParserDelegate, NSCoding> {
 	NSUInteger busstopid;

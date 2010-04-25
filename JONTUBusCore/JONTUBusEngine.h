@@ -12,7 +12,11 @@
 #import "JONTUBusStop.h"
 #import "JONTUBusRoute.h"
 
-@interface JONTUBusEngine : NSObject <NSXMLParserDelegate,NSCoding> {
+#if TARGET_OS_IPHONE
+#import "NSXMLParserDelegateFix.h"
+#endif
+
+@interface JONTUBusEngine : NSObject <NSXMLParserDelegate, NSCoding> {
 	NSMutableArray *buses;
 	NSMutableArray *routes;
 	NSMutableArray *stops;
