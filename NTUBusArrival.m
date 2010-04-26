@@ -15,6 +15,10 @@ int main (int argc, const char * argv[]) {
 		
 		NSLog(@"%@: %@, %@", [[[engine stops] objectAtIndex:i] desc], [[[engine stops] objectAtIndex:i] lat], [[[engine stops] objectAtIndex:i] lon]);
 	}
+	
+	for (int j=0;j<[[engine buses] count];j++) {
+		NSLog(@"%@", [[[engine buses] objectAtIndex:j] busPlate]);
+	}
 
 	NSLog(@"%i", [[engine stops] count]);
 	
