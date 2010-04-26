@@ -46,7 +46,7 @@ static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/get
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {
-	NSLog(@"Encoding bus stop object");	
+	NSLog(@"Encoding bus stop object: %@", desc);	
 	[aCoder encodeInteger:busstopid forKey:@"stopID"];
 	[aCoder encodeObject:code forKey:@"code"];
 	[aCoder encodeObject:desc forKey:@"desc"];

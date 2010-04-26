@@ -38,7 +38,7 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {
-	NSLog(@"Encoding route object");	
+	NSLog(@"Encoding route object: %@", name);	
 	[aCoder encodeInteger:routeid forKey:@"routeid"];
 	[aCoder encodeObject:name forKey:@"name"];
 	[aCoder encodeObject:stops forKey:@"stops"];
