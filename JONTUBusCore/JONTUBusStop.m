@@ -39,13 +39,14 @@ static NSString *getEta = @"http://campusbus.ntu.edu.sg/ntubus/index.php/xml/get
 		lon = [[aDecoder decodeObjectForKey:@"lon"] retain];
 		lat = [[aDecoder decodeObjectForKey:@"lat"] retain];
 		otherBus = [[aDecoder decodeObjectForKey:@"otherBus"] retain];
-		
+		arrivals = nil;
 	}
 	return self;
 	
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {
+	NSLog(@"Encoding bus stop object");	
 	[aCoder encodeInteger:busstopid forKey:@"stopID"];
 	[aCoder encodeObject:code forKey:@"code"];
 	[aCoder encodeObject:desc forKey:@"desc"];

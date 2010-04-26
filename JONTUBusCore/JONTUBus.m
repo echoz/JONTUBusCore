@@ -43,6 +43,7 @@
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {	
+	NSLog(@"Encoding bus object: %i", busid);
 	[aCoder encodeInteger:busid forKey:@"busid"];
 	[aCoder encodeObject:route forKey:@"route"];
 	[aCoder encodeObject:busPlate forKey:@"busPlate"];

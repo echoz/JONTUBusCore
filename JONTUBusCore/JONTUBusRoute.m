@@ -30,15 +30,20 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 		routeid = [aDecoder decodeIntegerForKey:@"routeid"];
 		name = [[aDecoder decodeObjectForKey:@"name"] retain];
 		stops = [[aDecoder decodeObjectForKey:@"stops"] retain];
+		lastGetStops = [[aDecoder decodeObjectForKey:@"lastGetStops"] retain];
+		dirty = [aDecoder decodeBoolForKey:@"dirty"];
 		
 	}
 	return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {
+	NSLog(@"Encoding route object");	
 	[aCoder encodeInteger:routeid forKey:@"routeid"];
 	[aCoder encodeObject:name forKey:@"name"];
 	[aCoder encodeObject:stops forKey:@"stops"];
+	[aCoder encodeObject:lastGetStops forKey:@"lastGetStops"];
+	[aCoder encodeBool:dirty forKey:@"dirty"];
 }
 
 

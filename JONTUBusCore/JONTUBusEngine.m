@@ -47,6 +47,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		stops = nil;
 		routes = nil;
 		buses = nil;
+		lastGetIndexPage = nil;
+		indexPageCache = nil;
 	}
 	return self;
 }
@@ -66,6 +68,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder {
+	NSLog(@"Encoding engine object");	
 	[aCoder encodeObject:stops forKey:@"stops"];
 	[aCoder encodeObject:routes forKey:@"routes"];
 	[aCoder encodeObject:buses forKey:@"buses"];
@@ -234,20 +237,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	if (holdCache < 0) {
 		if (indexPageCache == nil) {
 			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
-			lastGetIndexPage = [NSDate date];
+ 			lastGetIndexPage = [[NSDate date] retain];
 		} else {
 			return indexPageCache;
 		}
 	} else {
 		if (indexPageCache == nil) {
 			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
-			lastGetIndexPage = [NSDate date];
+			lastGetIndexPage = [[NSDate date] retain];
 		}		
 		if ([[NSDate date] timeIntervalSinceDate:lastGetIndexPage] > holdCache) {
 			[indexPageCache release];
 			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
 			[lastGetIndexPage release];
-			lastGetIndexPage = [NSDate date];
+			lastGetIndexPage = [[NSDate date] retain];
 			dirty = YES;
 		}		
 	}
@@ -289,6 +292,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
 -(void)dealloc {
 	[lastGetIndexPage release];
+	[indexPageCache release];
 	[buses release];
 	[stops release];
 	[routes release];
