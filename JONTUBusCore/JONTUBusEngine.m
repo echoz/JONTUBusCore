@@ -183,6 +183,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	return routes;
 }
 
+-(JONTUBus *)busForPlate:(NSString *)plate {
+	for (JONTUBus *bus in buses) {
+		if ([[bus busPlate] isEqualToString:plate]) {
+			return bus;
+		}
+	}
+	return nil;
+}
+
 -(NSArray *)buses {
 	if (dirty) {
 		[self start];

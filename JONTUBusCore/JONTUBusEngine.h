@@ -43,6 +43,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(JONTUBusEngine);
 
 -(NSArray *)buses;
 -(NSArray *)busesWithRefresh:(BOOL)refresh;
+-(JONTUBus *)busForPlate:(NSString *)plate;
 
 /* generic methods */
 +(JONTUBusEngine *)sharedJONTUBusEngine;
