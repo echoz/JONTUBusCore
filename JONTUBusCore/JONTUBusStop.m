@@ -107,6 +107,11 @@ static NSString *irisRegex = @"Service (.*)\\s*Next bus:\\s*(.*)\\s*Subsequent b
 	return arrivals;
 }
 
+-(NSDictionary *)irisQueryForService:(NSString *)serviceNumber {
+	return [self irisQueryForService:serviceNumber atStop:[self code]];
+	
+}
+
 -(NSDictionary *)irisQueryForService:(NSString *)serviceNumber atStop:(NSString *)busstopcode {
 	NSMutableDictionary *irisQueryReturn = [NSMutableDictionary dictionary];
 	
