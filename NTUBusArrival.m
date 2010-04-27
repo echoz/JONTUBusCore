@@ -26,6 +26,9 @@ int main (int argc, const char * argv[]) {
 	
 	NSLog(@"%@", [[[engine stops] objectAtIndex:10] arrivals]);
 	
+	NSLog(@"%@", [[[engine stops] objectAtIndex:5] otherBus]);
+	
+	NSLog(@"%@", [[[engine stops] objectAtIndex:10] irisQueryForService:@"179" atStop:@"22529"]);
 	
 //	[JONTUBusEngine saveState:@"/Users/jeremy/test.dat"];
 	

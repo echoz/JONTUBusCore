@@ -111,12 +111,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	if (refresh) {
 		NSString *matchString = [[NSString alloc] initWithData:[self getIndexPage] encoding:NSASCIIStringEncoding];
 		NSArray *busstops = [matchString arrayOfCaptureComponentsMatchedByRegex:regexBusStop];
+		NSArray *otherBuses = nil;
 		JONTUBusStop *stop;
 		
 		[stops removeAllObjects];
 		[matchString release];
 			
 		for (int i=0;i<[busstops count];i++) {
+
+			if ([[[busstops objectAtIndex:i] objectAtIndex:9] length] > 0) {
+				otherBuses = [[[[busstops objectAtIndex:i] objectAtIndex:9] stringByReplacingOccurrencesOfString:@" " withString:@" "] componentsSeparatedByString:@","];
+			} else {
+				otherBuses = nil;
+			}
 			
 			stop = [[JONTUBusStop alloc] initWithID:[[[busstops objectAtIndex:i] objectAtIndex:1] intValue] 
 											   code:[[busstops objectAtIndex:i] objectAtIndex:2]
@@ -124,10 +131,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 										   roadName:[[busstops objectAtIndex:i] objectAtIndex:4]
 										 longtitude:[[busstops objectAtIndex:i] objectAtIndex:7]
 										   latitude:[[busstops objectAtIndex:i] objectAtIndex:8]
-										 otherBuses:[[[busstops objectAtIndex:i] objectAtIndex:9] componentsSeparatedByString:@","]];
+										 otherBuses:otherBuses];
 			[stops addObject:stop];
 			[stop release];
-		}
+		}					
 	}
 	return stops;
 }

@@ -28,6 +28,7 @@
 }
 
 -(id)initWithID:(NSUInteger)stopID code:(NSString *)stopCode description:(NSString *)stopDesc roadName:(NSString *)stopRdName longtitude:(NSNumber *)stopLong latitude:(NSNumber *)stopLat otherBuses:(NSArray *)stopOtherBus;
+-(NSDictionary *)irisQueryForService:(NSString *)serviceNumber atStop:(NSString *)busstopcode;
 -(NSArray *) arrivals;
 
 @property (nonatomic, retain) NSArray *routes;
