@@ -32,7 +32,7 @@
 
 @implementation JONTUBusEngine
 
-@synthesize dirty, holdCache;
+@synthesize dirty, holdCache, brandNew;
 
 static NSString *getBusPosition = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentPosition";
 static NSString *indexPage = @"http://campusbus.ntu.edu.sg/ntubus/";
@@ -70,6 +70,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		buses = [[NSMutableArray array] retain];
 		lastGetIndexPage = nil;
 		indexPageCache = nil;
+		brandNew = YES;
 	}
 	return self;
 }
@@ -83,7 +84,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		lastGetIndexPage = [[aDecoder decodeObjectForKey:@"lastGetIndexPage"] retain];
 		dirty = [aDecoder decodeBoolForKey:@"dirty"];
 		holdCache = [aDecoder decodeIntForKey:@"holdCache"];
-
+		brandNew = NO;
 	}
 	return self;
 }
@@ -110,6 +111,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	[self stopsWithRefresh:YES]; // has to be first
 	[self routesWithRefresh:YES]; // has to be second
 	[self busesWithRefresh:YES]; // has to be last
+	
+	brandNew = NO;	
 }
 
 -(JONTUBusStop *)stopForId:(NSUInteger)stopid {
