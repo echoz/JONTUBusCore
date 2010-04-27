@@ -126,8 +126,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
 -(NSArray *)stops {
 	if (dirty) {
-		[self start];
 		dirty = NO;
+		[self start];
 	}
 	return [self stopsWithRefresh:NO];
 }
@@ -185,8 +185,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
 -(NSArray *)routes {
 	if (dirty) {
-		[self start];
 		dirty = NO;		
+		[self start];
 	}
 	
 	return [self routesWithRefresh:NO];
@@ -226,8 +226,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
 -(NSArray *)buses {
 	if (dirty) {
-		[self start];
 		dirty = NO;		
+		[self start];
 	}
 	
 	return [self busesWithRefresh:NO];
@@ -291,6 +291,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 			[indexPageCache release];
 			indexPageCache = [[self sendXHRToURL:indexPage PostValues:nil] retain];
 			[lastGetIndexPage release];
+			lastGetIndexPage = nil;
 			lastGetIndexPage = [[NSDate date] retain];
 			dirty = YES;
 		}		
