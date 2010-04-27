@@ -65,9 +65,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 -(id)init {
 	if (self = [super init]) {
 		holdCache = 120;
-		stops = nil;
-		routes = nil;
-		buses = nil;
+		stops = [[NSMutableArray array] retain];
+		routes = [[NSMutableArray array] retain];
+		buses = [[NSMutableArray array] retain];
 		lastGetIndexPage = nil;
 		indexPageCache = nil;
 	}
@@ -101,9 +101,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(void)start {
-	stops = [[NSMutableArray array] retain];
-	routes = [[NSMutableArray array] retain];
-	buses = [[NSMutableArray array] retain];
+	
+	[buses removeAllObjects];	
+	[routes removeAllObjects];
+	[stops removeAllObjects];
 	
 	// start baseline initialisation.
 	[self stopsWithRefresh:YES]; // has to be first
