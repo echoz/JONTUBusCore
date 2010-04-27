@@ -100,20 +100,24 @@ static NSString *irisRegex = @"Service (.*)\\s*Next bus:\\s*(.*)\\s*Subsequent b
 
 	NSArray *properties = nil;
 
-	if ([busstops count] > 1) {
-		for (int i=0;i<[busstops count];i++) {
-			if ([[[busstops objectAtIndex:i] objectAtIndex:1] isEqualToString:serviceNumber]) {
-				properties = [busstops objectAtIndex:i];
-				break;
+	if ([busstops count] > 0) {
+		if ([busstops count] > 1) {
+			for (int i=0;i<[busstops count];i++) {
+				if ([[[busstops objectAtIndex:i] objectAtIndex:1] isEqualToString:serviceNumber]) {
+					properties = [busstops objectAtIndex:i];
+					break;
+				}
 			}
+		} else {
+			properties = [busstops objectAtIndex:0];
 		}
-	} else {
-		properties = [busstops objectAtIndex:0];
+		
+		[irisQueryReturn setValue:[[properties objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"service"];
+		[irisQueryReturn setValue:[[properties objectAtIndex:2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"eta"];
+		[irisQueryReturn setValue:[[properties objectAtIndex:3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"subsequent"];
+		
 	}
 	
-	[irisQueryReturn setValue:[[properties objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"service"];
-	[irisQueryReturn setValue:[[properties objectAtIndex:2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"eta"];
-	[irisQueryReturn setValue:[[properties objectAtIndex:3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"subsequent"];
 	
 	return irisQueryReturn;
 }
