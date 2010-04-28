@@ -175,7 +175,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
 -(JONTUBusRoute *)routeForName:(NSString *)routename {
 	for (JONTUBusRoute *route in [self routes]) {
-		if ([[route name] isEqualToString:routename]) {
+		if ([[route name] hasPrefix:routename]) {
 			return route;
 		}
 	}
