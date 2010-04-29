@@ -124,6 +124,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 	return nil;
 }
 
+-(JONTUBusStop *)stopForCode:(NSString *)code {
+	for (JONTUBusStop *stop in [self stops]) {
+		if ([[stop code] isEqualToString:code]) {
+			return stop;
+		}
+	}
+	return nil;
+}
+
 -(NSArray *)stops {
 	if (dirty) {
 		dirty = NO;
