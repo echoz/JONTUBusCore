@@ -56,7 +56,7 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 		lastGetStops = [[aDecoder decodeObjectForKey:@"lastGetStops"] retain];
 		dirty = [aDecoder decodeBoolForKey:@"dirty"];
 		color = [[aDecoder decodeObjectForKey:@"color"] retain];
-		colorAlt = [[aDecoder decodeObjectForKey:@"colorAlt"] retain]
+		colorAlt = [[aDecoder decodeObjectForKey:@"colorAlt"] retain];
 	}
 	return self;
 }
