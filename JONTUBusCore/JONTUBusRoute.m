@@ -33,15 +33,17 @@
 
 @implementation JONTUBusRoute
 
-@synthesize routeid, name, dirty;
+@synthesize routeid, name, dirty, color, colorAlt;
 
 static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentBusStop";
 
--(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops{
+-(id)initWithID:(NSUInteger)rid name:(NSString *)rname color:(NSString*)clr colorAlt:(NSString *)clrAlt stops:(NSArray *)busstops {
 	if (self = [super init]) {
 		routeid = rid;
 		name = [rname copy];
 		stops = [busstops copy];
+		color = [clr copy];
+		colorAlt = [clrAlt copy];
 	}
 	return self;
 }
@@ -115,6 +117,8 @@ static NSString *getRouteBusStops = @"http://campusbus.ntu.edu.sg/ntubus/index.p
 }
 
 -(void)dealloc {
+	[color release];
+	[colorAlt release];
 	[name release];
 	[stops release];
 	[super dealloc];

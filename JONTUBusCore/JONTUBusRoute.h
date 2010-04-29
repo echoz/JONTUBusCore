@@ -37,13 +37,17 @@
 	NSString *name;
 	NSMutableArray *stops;
 	NSDate *lastGetStops;
+	NSString *color;
+	NSString *colorAlt;
 	BOOL dirty;
 }
--(id)initWithID:(NSUInteger)rid name:(NSString *)rname stops:(NSArray *)busstops;
+-(id)initWithID:(NSUInteger)rid name:(NSString *)rname color:(NSString*)clr colorAlt:(NSString *)clrAlt stops:(NSArray *)busstops;
 
 -(NSArray *)stopsWithRefresh:(BOOL)refresh;
 -(NSArray *)stops;
 
+@property (readonly) NSString *color;
+@property (readonly) NSString *colorAlt;
 @property (readonly) NSUInteger routeid;
 @property (readonly) NSString *name;
 @property (readwrite) BOOL dirty;

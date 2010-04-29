@@ -114,7 +114,7 @@ sample:
 });
 
 possible regex
-ntu.routes.push\(\{\s*id:([\d]*),\s*name:"(.*)",\s*centerMetric:.*,\s*centerLonLat:new GeoPoint\(([\d.]*), ([\d.]*)\),\s*color:.*,\s*colorAlt:.*,\s*zone:.*,\s*busStop:.*\s*\}\);
+ntu.routes.push\(\{\s*id:([\d]*),\s*name:"(.*)",\s*centerMetric:.*,\s*centerLonLat:new GeoPoint\(([\d.]*), ([\d.]*)\),\s*color:"#(.*)",\s*colorAlt:"#(.*)",\s*zone:.*,\s*busStop:.*\s*\}\);
 
 
 

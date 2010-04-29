@@ -38,7 +38,7 @@ static NSString *getBusPosition = @"http://campusbus.ntu.edu.sg/ntubus/index.php
 static NSString *indexPage = @"http://campusbus.ntu.edu.sg/ntubus/";
 
 static NSString *regexBusStop = @"ntu.busStop.push\\(\\{\\s*id:(\\d*),\\s*code:(\\d*),\\s*description:\"(.*)\",\\s*roadName:\"(.*)\",\\s*x:([\\d.]*),\\s*y:([\\d.]*),\\s*lon:([\\d.]*),\\s*lat:([\\d.]*),\\s*otherBus:\"(.*)\",\\s*marker:.*,\\s*markerShadow:.*\\s*\\}\\);";
-static NSString *regexRoute = @"ntu.routes.push\\(\\{\\s*id:([\\d]*),\\s*name:\"(.*)\",\\s*centerMetric:.*,\\s*centerLonLat:new GeoPoint\\(([\\d.]*), ([\\d.]*)\\),\\s*color:.*,\\s*colorAlt:.*,\\s*zone:.*,\\s*busStop:.*\\s*\\}\\);";
+static NSString *regexRoute = @"ntu.routes.push\\(\\{\\s*id:([\\d]*),\\s*name:\"(.*)\",\\s*centerMetric:.*,\\s*centerLonLat:new GeoPoint\\(([\\d.]*), ([\\d.]*)\\),\\s*color:\"#(.*)\",\\s*colorAlt:\"#(.*)\",\\s*zone:.*,\\s*busStop:.*\\s*\\}\\);";
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
@@ -204,7 +204,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		
 		for (int i=0;i<[busroutes count];i++) {
 			route = [[JONTUBusRoute alloc] initWithID:[[[busroutes objectAtIndex:i] objectAtIndex:1] intValue] 
-												 name:[[busroutes objectAtIndex:i] objectAtIndex:2] stops:nil];
+												 name:[[busroutes objectAtIndex:i] objectAtIndex:2] 
+												color:[[busroutes objectAtIndex:i] objectAtIndex:3]
+											 colorAlt:[[busroutes objectAtIndex:i] objectAtIndex:4]
+												stops:nil];
 			route.dirty = YES;
 			[routes addObject:route];
 			[route release];
