@@ -64,6 +64,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(JONTUBusEngine);
 -(NSArray *)stops;
 -(NSArray *)stopsWithRefresh:(BOOL)refresh;
 -(JONTUBusStop *)stopForId:(NSUInteger)stopid;
+-(JONTUBusStop *)stopForCode:(NSString *)code;
 
 -(NSArray *)buses;
 -(NSArray *)busesWithRefresh:(BOOL)refresh;
