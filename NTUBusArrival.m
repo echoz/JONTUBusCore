@@ -32,7 +32,7 @@ int main (int argc, const char * argv[]) {
 	
 	[engine setHoldCache:-1];	// comment along with loadState to test archived data
 	[engine start];				// comment along with loadState to test archived data
-
+/*
 	for (int i=0;i<[[engine stops] count];i++) {
 		
 		NSLog(@"%@: %@, %@", [[[engine stops] objectAtIndex:i] desc], [[[engine stops] objectAtIndex:i] lat], [[[engine stops] objectAtIndex:i] lon]);
@@ -50,7 +50,9 @@ int main (int argc, const char * argv[]) {
 	
 	NSLog(@"%@", [[[engine stops] objectAtIndex:5] otherBus]);
 	
-	NSLog(@"%@", [[[engine stops] objectAtIndex:10] irisQueryForService:@"179" atStop:@"22529"]);
+	//	NSLog(@"%@", [[[engine stops] objectAtIndex:10] irisQueryForService:@"179" atStop:@"22529"]);
+*/	
+	NSLog(@"%@", [[[engine routes] objectAtIndex:1] color]);
 	
 //	[JONTUBusEngine saveState:@"/Users/jeremy/test.dat"];
 	
