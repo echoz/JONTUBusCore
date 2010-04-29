@@ -212,7 +212,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		[matchString release];	
 		
 		for (int i=0;i<[busroutes count];i++) {
-			NSLog(@"%@",[busroutes objectAtIndex:i]);
 			route = [[JONTUBusRoute alloc] initWithID:[[[busroutes objectAtIndex:i] objectAtIndex:1] intValue] 
 												 name:[[busroutes objectAtIndex:i] objectAtIndex:2] 
 												color:[[busroutes objectAtIndex:i] objectAtIndex:5]
