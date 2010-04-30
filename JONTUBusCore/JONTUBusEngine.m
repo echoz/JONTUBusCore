@@ -77,14 +77,31 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
 	if (self = [super init]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillStartDecode" object:[NSNumber numberWithInt:4]];			
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillDecodeStops" object:nil];
 		stops = [[aDecoder decodeObjectForKey:@"stops"] retain];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidDecodeStops" object:nil];
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillDecodeRoutes" object:nil];
 		routes = [[aDecoder decodeObjectForKey:@"routes"] retain];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidDecodeRoutes" object:nil];
+
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillDecodeBuses" object:nil];
 		buses = [[aDecoder decodeObjectForKey:@"buses"] retain];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidDecodeBuses" object:nil];
+
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillDecodePageCache" object:nil];
 		indexPageCache = [[aDecoder decodeObjectForKey:@"indexPageCache"] retain];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidDecodePageCache" object:nil];
+		
 		lastGetIndexPage = [[aDecoder decodeObjectForKey:@"lastGetIndexPage"] retain];
 		dirty = [aDecoder decodeBoolForKey:@"dirty"];
 		holdCache = [aDecoder decodeIntForKey:@"holdCache"];
 		brandNew = NO;
+
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidStartDecode" object:nil];
+		
 	}
 	return self;
 }
@@ -102,17 +119,28 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 }
 
 -(void)start {
-	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillStartCacheLoad" object:[NSNumber numberWithInt:3]];	
+
 	[buses removeAllObjects];	
 	[routes removeAllObjects];
 	[stops removeAllObjects];
 	
 	// start baseline initialisation.
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillStartStopsCacheLoad" object:nil];	
 	[self stopsWithRefresh:YES]; // has to be first
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidStartStopsCacheLoad" object:nil];	
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillStartRoutesCacheLoad" object:nil];	
 	[self routesWithRefresh:YES]; // has to be second
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidStartRoutesCacheLoad" object:nil];	
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineWillStartBusesCacheLoad" object:nil];	
 	[self busesWithRefresh:YES]; // has to be last
-	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidStartBusesCacheLoad" object:nil];	
+
 	brandNew = NO;	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JONTUBusEngineDidStartCacheLoad" object:nil];
+	
 }
 
 -(JONTUBusStop *)stopForId:(NSUInteger)stopid {
