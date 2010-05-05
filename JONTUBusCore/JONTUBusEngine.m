@@ -34,7 +34,7 @@
 
 @implementation JONTUBusEngine
 
-@synthesize dirty, holdCache, brandNew, lastGetIndexPage;
+@synthesize dirty, holdCache, brandNew, lastGetIndexPage, indexPageCache;
 
 static NSString *getBusPosition = @"http://campusbus.ntu.edu.sg/ntubus/index.php/main/getCurrentPosition";
 static NSString *indexPage = @"http://campusbus.ntu.edu.sg/ntubus/";

@@ -52,6 +52,7 @@
 @property (readonly) BOOL brandNew;
 @property (readwrite) int holdCache;
 @property (readonly) NSDate *lastGetIndexPage;
+@property (readonly) NSData *indexPageCache;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(JONTUBusEngine);
 
