@@ -30,6 +30,8 @@
 #import "JONTUBusEngine.h"
 #import "RegexKitLite.h"
 
+#define HTTP_USER_AGENT @"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/533.4+ (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7"
+
 @implementation JONTUBusEngine
 
 @synthesize dirty, holdCache, brandNew, lastGetIndexPage;
@@ -359,6 +361,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(JONTUBusEngine);
 		[request setHTTPMethod:@"POST"];
 		[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 		[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+		[request setValue:HTTP_USER_AGENT forHTTPHeaderField:@"User-Agent"];
 		[request setHTTPBody:postData];
 		
 	}
