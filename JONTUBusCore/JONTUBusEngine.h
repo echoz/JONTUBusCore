@@ -33,7 +33,7 @@
 #import "JONTUBusStop.h"
 #import "JONTUBusRoute.h"
 
-#if TARGET_OS_IPHONE
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_4_0
 #import "NSXMLParserDelegateFix.h"
 #endif
 
