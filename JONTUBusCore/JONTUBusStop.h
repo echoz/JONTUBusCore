@@ -28,9 +28,6 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_4_0
-#import "NSXMLParserDelegateFix.h"
-#endif
 
 @interface JONTUBusStop : NSObject <NSXMLParserDelegate, NSCoding> {
 	NSUInteger busstopid;

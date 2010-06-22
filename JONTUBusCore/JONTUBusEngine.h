@@ -33,10 +33,6 @@
 #import "JONTUBusStop.h"
 #import "JONTUBusRoute.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_4_0
-#import "NSXMLParserDelegateFix.h"
-#endif
-
 @interface JONTUBusEngine : NSObject <NSXMLParserDelegate, NSCoding> {
 	NSMutableArray *buses;
 	NSMutableArray *routes;
