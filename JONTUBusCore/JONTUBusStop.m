@@ -50,6 +50,7 @@ static NSString *irisRegex = @"Service (.*)\\s*Next bus:\\s*(.*)\\s*Subsequent b
 		lat = [stopLat copy];
 		otherBus = [stopOtherBus copy];
 		arrivals = nil;
+		routes = [[NSMutableArray arrayWithCapacity:0] retain];
 	}
 	return self;
 }
