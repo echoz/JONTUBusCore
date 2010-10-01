@@ -47,7 +47,6 @@
 		32A70AAB03705E1F00C91783 /* NTUBusArrival_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTUBusArrival_Prefix.pch; sourceTree = "<group>"; };
 		3F3B4D95116B465B00EB908A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3F8C19BE11845AE50079FBBB /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
-		3F98A8891184946700877969 /* NSXMLParserDelegateFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSXMLParserDelegateFix.h; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* NTUBusArrival */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NTUBusArrival; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* NTUBusArrival.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NTUBusArrival.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,7 +86,6 @@
 				00F660B1115C9CD4005DBC45 /* JONTUBusEngine.h */,
 				00F660B2115C9CD4005DBC45 /* JONTUBusEngine.m */,
 				3F8C19BE11845AE50079FBBB /* SynthesizeSingleton.h */,
-				3F98A8891184946700877969 /* NSXMLParserDelegateFix.h */,
 			);
 			path = JONTUBusCore;
 			sourceTree = "<group>";
